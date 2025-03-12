@@ -1,0 +1,160 @@
+// Task 01
+public class UniversityTester{
+  public static void main (String[] args){
+    //a:
+    University x1 = new University();
+    University x2 = new University();
+    System.out.println(x1);
+    System.out.println(x2);
+    System.out.println(x1.name);
+    System.out.println(x1.country);
+    System.out.println(x2.name);
+    System.out.println(x2.country);
+    
+     //b:
+    x1.name = "Imperial College London";
+    x1.country = "England";
+    x2.name = "BRAC University";
+    x2.country = "Bangladesh";
+     System.out.println(x1.name);
+    System.out.println(x1.country);
+    System.out.println(x2.name);
+    System.out.println(x2.country);
+  }
+}
+
+//Task 02
+public class Student{
+  public String name ="Default";
+  public int id ;
+}
+// task 03
+public class CSECourse{
+  public String courseName = " Programming Language II";
+  public String courseCode = " CSE111";
+  public int credit = 3;
+  
+}
+//Task 04
+public class ImaginaryNumber{
+  public int realPart;
+  public int imaginaryPart;
+  
+  public void printNumber(){
+    System.out.println(realPart+" "+"+"+" "+imaginaryPart+"i");
+  }
+}
+//Task 05
+public class Course{
+  public String CourseName;
+  public String CourseCode;
+  public int Credit;
+  
+  public void updateDetails( String x1, String x2 ,int x3){
+    CourseName = x1;
+    CourseCode = x2;
+    Credit = x3;
+  }
+  public void displayCourse(){
+    System.out.println("Course Name:"+CourseName+"\nCourse Code:"+CourseCode+"\nCourse Credit:"+Credit);
+  }
+}
+
+//Task 06
+public class Assignment{
+  public int tasks;
+  public  String difficulty;
+  public boolean submission = false ;
+  
+  public void printDetails(){
+    System.out.println("Number of tasks:"+tasks+"\nDifficulty level:"+difficulty+"\nSubmission required:"+submission);
+  }
+  public String makeOptional(){
+    if( submission == true){
+      submission = false;
+      return ("Assignment will not require submission");
+    }
+    else{
+      return (" Submission is already not required ");
+    }
+  }
+}
+
+//Task 07
+public class CellPhone {
+    String model;
+    String[] contacts;
+    int Count;
+
+    public CellPhone() {
+        this.model = "unknown";
+        this.contacts = new String[3]; 
+        this.Count = 0;
+    }
+
+    public void storeContact(String contact) {
+        if (Count < 3) {
+            contacts[Count] = contact;
+            Count++;
+            System.out.println("Contact Stored");
+        } else {
+            System.out.println("Memory full. New contact can't be stored.");
+        }
+    }
+
+    public void printDetails() {
+        System.out.println("Phone Model " + model);
+        System.out.println("Contacts Stored " + Count);
+        if (Count > 0) {
+            System.out.println("Stored Contacts:");
+            for (int i = 0; i < Count; i++) {
+                System.out.println(contacts[i]);
+            }
+        }
+    }
+}
+
+//Task 08
+public class Employee{
+ public String name;
+ public double salary = 30000;
+ public String designation = " junior";
+ public double tax;
+ 
+ public void newEmployee(String c){
+   name = c;
+ }
+ public void displayInfo(){
+   System.out.println("Employee Name:"+" "+name);
+   System.out.println("Employee Salary:"+" "+salary+" "+"TK");
+   System.out.println("Employee Designation:"+ designation);
+ }
+ 
+ public void calculateTax(){
+   if( salary > 30000 && salary <= 50000){
+     tax = salary*0.1;
+     System.out.println(name+" "+"Tax Amount:"+" "+tax+" "+"TK");
+   }
+   else if(salary > 50000){
+     tax = salary*0.3;
+     System.out.println(name+" "+"Tax Amount:"+" "+tax+" "+"TK");
+   }
+   else{
+     System.out.println("No need to pay tax");
+   }
+ }
+ public void promoteEmployee( String a){
+   designation = a;
+   if(designation.equals("senior")){
+     salary += 25000;
+   }
+   else if( designation.equals("lead")){
+     salary += 50000;
+   }
+   else{
+     salary += 75000;
+   }
+   System.out.println(name+" "+"has been promoted to"+" "+designation);
+   System.out.println("New salary:"+" "+ salary+"TK");
+ }
+}
