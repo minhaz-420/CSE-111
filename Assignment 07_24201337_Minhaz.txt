@@ -1,0 +1,276 @@
+// Task 01
+
+public class BrowserHistory{
+  public int count = 0;
+  public int current = 0;
+  public String arr[];
+  
+  public BrowserHistory(int a){
+    arr = new String [a];
+  }
+  public void visitWeb(String a){
+    if(count<3){
+      arr[count] = a;
+      count++;
+      current = count;
+      System.out.println("Visited: "+a);
+    }
+    else{
+      System.out.println("History is full. Cannot visit "+a+" web page.");
+    }
+  }
+  public void showHistory(){
+    if(count == 0){
+      System.out.println("No web pages visited yet.");
+    }
+    else{
+      System.out.println("Browser History: ");
+      for(int i = 0; i<count ; i++){
+        System.out.println(arr[i]);
+      }
+    }
+  }
+  public void currentWeb(){
+    if( current == 0){
+      System.out.println("You have not visited any website yet!");
+    }
+    else{
+      System.out.println("Current web page: "+arr[current-1]);
+    }
+  }
+  public void back(){
+    if( count ==  0 && current == 0){
+      
+    }
+    else{
+      count--;
+      current--;
+    }
+  }
+}
+
+//Task 02
+public class CustomerService{
+  public String name;
+  public String arr[] ;
+  public int index;
+  public int count ;
+  
+  public CustomerService(int a ){
+    arr = new String [a];
+  }
+  public void addCustomer(String a ){
+    if( index < 3){
+      arr[index] = a;
+      index++;
+      System.out.println("Added: "+ a);
+    }
+    else{
+      System.out.println("Queue is full. Cannot add "+a);
+    }
+  }
+  public void serveCustomer(){
+    if(index>0){
+      System.out.println("Serving: "+arr[count]);
+      for(int i = 1; i<index;i++){
+        arr[i-1] = arr[i];
+      }
+      arr[index - 1 ] = null;
+      index--;
+    }
+    else{
+      System.out.println("No customers to serve");
+    }
+  }
+}
+
+//Task 03
+public class Circle extends Shape{
+  public int radius;
+  
+  public void area(){
+    System.out.println("Area of "+color+" "+name+": "+(3.1416*radius*radius));
+  }
+}
+
+//Task 04
+public class Dog extends Animal{
+  public String name;
+  
+  public Dog(){
+    System.out.println("The dog says hello!");
+  }
+  public String getName(){
+    return name;
+  }
+  public void updateSound(String a){
+    sound = a;
+  }
+}
+
+//Task 05
+public class Cricket_Tournament extends Tournament{
+  public int teams;
+  public String type = "No type";
+  
+  public String detail(){
+    return "Cricket Tournament Name: "+getName()+"\nNumber of Teams: "+teams+"\nType: "+type;
+  }
+  public Cricket_Tournament(){
+  }
+  public Cricket_Tournament(String a,int b, String c){
+    super(a);
+    teams = b;
+    type = c;
+  }
+}
+
+public class Tennis_Tournament extends Tournament{
+  public int p_num ;
+  
+  public Tennis_Tournament( String a, int b){
+    super(a);
+    p_num = b;
+  }
+  public String detail(){
+    return "Tennis Tournament Name: "+getName()+"\nNumber of Players: "+p_num;
+  }
+}
+
+//Task 06
+public class Book extends Product{
+  public String isbn;
+  public  String publisher;
+  
+  public Book (int a , String b , int c, String d,String e){
+    super (a,b,c);
+    isbn = d;
+    publisher = e;
+  }
+  public String printDetail(){
+    return getIdTitlePrice()+"\nISBN: "+isbn+" Publisher: "+publisher;
+  }
+}
+
+public class CD extends Product{
+  public String band;
+  public int duration;
+  public String genre;
+  
+  public CD( int a, String b,int c,String d,int e,String f){
+    super(a,b,c);
+    band = d;
+    duration = e;
+    genre = f;
+  }
+  public String printDetail(){
+    return getIdTitlePrice()+"\nBand: "+band+" Duration: "+duration+" minutes Genre: "+genre;
+  }
+}
+
+//Task 07
+public class CSEStudent extends Student{
+  public static int count;
+  public static String arr1[] = {"CSE110","CSE111","CSE220","CSE221"};
+  
+  public  CSEStudent(String a, int b){
+    super(a,b);
+    count++;
+  }
+  public void addLabBasedCourse(String a){
+   boolean flag = false;
+    for(int i = 0;i<arr1.length ;i++){
+      if(a.equals(arr1[i])){
+        courses += a+" ";
+        flag = true;
+        break;
+      }
+    }
+    if(!flag){
+      System.out.println("It is not a lab based course!");
+    }
+  }
+  public static void details(){
+    System.out.println("Total CSE Students: "+count);
+    System.out.println("Available Lab Based Courses: ");
+    for(int i = 0;i<arr1.length; i++){
+      System.out.print(arr1[i]+" ");
+    }
+    System.out.println();
+  }
+}
+
+//Task 08
+public class Player extends SportsPerson{
+  public int goal;
+  public int match;
+  public double ratio;
+  public int earning;
+  
+  public Player(String a,String b,String c,int d,int e){
+    super(a,b,c);
+    goal = d;
+    match = e;
+  }
+  public void calculateRatio(){
+    earning =(goal*1000)+(match*10);
+    ratio =(double) goal/match;
+  }
+  public void printDetails(){
+    System.out.println(getNameTeam()+"\nTeam role: "+role);
+    System.out.println("Total Goal: "+goal+", Total Played: "+match+"\nGoal Ratio: "+ratio+"\nMatch Earning: "+earning+"K");
+  }
+}
+
+public class Manager extends SportsPerson{
+  public int win;
+  public int earning;
+  
+  public Manager(String a,String b,String c,int d){
+    super(a,b,c);
+    win = d;
+  }
+   public void printDetails(){
+    earning = win*1000;
+    System.out.println(getNameTeam()+"\nTeam Role "+role);
+    System.out.println("Total Win: "+win+"\nMatch Earning: "+earning+"K");
+   }
+}
+
+
+
+////////////
+//Ungraded Task 01:
+public class Student extends Section{
+  
+  public Student(int a,String b,int c,String d){
+    super(c,d);
+    student_id = a;
+    student_name = b;
+  }
+  public void printStudentInfo(){
+    System.out.println("Student id: "+student_id+"\nStudent name: "+student_name);
+    System.out.println("Section id: "+ this.sec_id);
+    System.out.println("Teacher name: "+ this.teacher_name);
+  }
+}
+
+
+//Ungraded Task 02
+public class Section{
+  public static int section_count;
+  public static int student_count;
+  public String teacher_name;
+  public int sec_id;
+  public int student_id;
+  public String student_name;
+
+    public Section(){
+    
+  }
+  public Section(String a){
+    this.teacher_name = a;
+    section_count++;
+    sec_id = section_count;
+  }
+}

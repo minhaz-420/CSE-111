@@ -1,0 +1,128 @@
+//Task 01
+public class Song{
+  public String s_name;
+  public String a_name;
+  public int min;
+  Song next;
+  
+  public Song(String a, String b, int c){
+    s_name = a;
+    a_name = b;
+    min = c;
+  }
+  public void songInfo(){
+    System.out.println("Title "+s_name+", Artist: "+a_name+"\nLength: "+min+" minutes");
+  }
+}
+
+//Task 02
+public class Playlist{
+  public String p_name;
+  Song start;
+  
+  public Playlist(String a){
+    p_name = a ;
+    System.out.println(p_name+" created");
+  }
+
+// Task 03
+  public void info(){
+    Song current = start;
+    int count = 0;
+    
+    if(current == null){
+    System.out.println(p_name+" has thye following songs:");
+     if(count == 0){
+        System.out.println("No songs in "+p_name+".");
+      }
+    }
+    System.out.println(p_name+" has thye following songs:");
+    while(current != null){
+      System.out.println("Song-"+(count+1));
+      current.songInfo();
+      current = current.next;
+      count++;
+    }
+  }
+
+   //Task 04
+  public void addSong( Song obj){
+    System.out.println(obj.s_name+" added to "+p_name+".");
+    Song current = start ;
+    while( current.next != null){
+      current = current.next;
+    }
+    current.next = obj;
+  }
+ 
+// task 05
+   public void addSong(Song obj, int n)
+  {
+    if (n == 0)
+    {
+      obj.next = start;
+      start = obj;
+      System.out.println(obj.s_name+" added to "+p_name);
+    }
+     
+    else
+    { 
+      Song current = start;
+      int count = 0;
+       
+      while(current != null & count< n-1)
+      {
+        current = current.next;
+        count++;
+      }
+        if (current!= null){
+          obj.next = current.next;
+          current.next = obj;
+          System.out.println(obj.s_name+" added to "+p_name+".");
+        }
+      else{
+        System.out.println("Cannot add song to Index "+n+".");
+      }
+    }
+   }
+   //Task 06
+   public void playSong(String a){
+     Song current  = start;
+     
+     while(current != null){
+       if((current.s_name).equals(a)){
+         System.out.println("Playing "+current.s_name+" by "+current.a_name+".");
+         break;
+       }
+       current = current.next;
+     }
+     if(current == null){
+     System.out.println(a+" not found in "+p_name+".");
+     }
+   }
+   //Task 07
+   public void playSong(int a){
+     Song current = start;
+     int count = 0 ;
+     while(current != null && count < a){
+       current = current.next;
+       count++;
+     }
+      if(current != null){
+         System.out.println("Playing "+current.s_name+" by "+current.a_name+".");
+       }
+     else{
+       System.out.println("Song at Index "+a+" not found in "+p_name+".");
+     }
+   }
+   //Task 09
+   public int totalSong(){
+     Song current = start;
+     int count = 0 ;
+     while(current != null){
+       current = current.next;
+       count++;
+     }
+     return count;
+   }
+}
