@@ -1,0 +1,330 @@
+//Task 01(a)
+public class Pokemon{
+  public String name;
+  
+  public Pokemon(String a){
+    name = a;
+  }
+  public void attack(){
+    System.out.println(name+" attacks with a basic move!");
+  }
+  public void attack(String a){
+    System.out.println(name+" uses "+a+"!");
+  }
+  public void attack(String a,int b){
+    System.out.println(name+" uses "+a+" with power "+b+"!");
+  }
+}
+//1.(B)
+The code above depicts compile-time polymorphism.
+
+//Task 02
+public class Mango extends Fruit{
+  public Mango(){
+    super(true,"Mango");
+  }
+  @Override
+  public String toString(){
+    return getName()+"s are bad for you";
+  }
+}
+public class Jackfruit extends Fruit{
+  public Jackfruit(){
+    super(false,"Jackfruit");
+  }
+  @Override
+  public String toString(){
+    return getName()+"s are good for you";
+  }
+}
+
+//Task 03
+public class CSEStudent extends Student{
+  public String msg = "I want to transfer to CSE";
+  
+  @Override
+    public String shout(){
+    return msg;
+  }
+}
+public class CSE111Student extends Student{ 
+  public String msg = "I love Java Programming";
+  
+   @Override
+    public String shout(){
+    return msg;
+  }
+}
+
+//Task 04
+public class PlatinumCard extends CreditCard{
+  
+  public PlatinumCard(String a,String b){
+    super(a,b,100);
+  }
+  public void spendCash(int a){
+    System.out.println("Previous Reward Points: "+rewardPoints);
+    int extra_p = (a/100);
+    rewardPoints += (extra_p*2);
+    System.out.println("Reward points after spending "+a+" taka: "+rewardPoints);
+  }
+}
+public class SignatureCard extends CreditCard{
+  
+  public SignatureCard(String a,String b){
+    super(a,b,200);
+  }
+  public void spendCash(int a){
+    System.out.println("Previous Reward Points: "+rewardPoints);
+    int extra_p = (a/100);
+    rewardPoints += (extra_p*4);
+    System.out.println("Reward points after spending "+a+" taka: "+rewardPoints);
+  }
+  @Override
+  public void cardDetails(){
+    System.out.println("Card Holder Name: " + cardHolder);
+    System.out.println("Account Number: " + accountNo);
+    System.out.println("Reward point gained: " + rewardPoints);
+    System.out.println("Possible Number of Companions for Lounge: 5");
+  }
+}
+
+
+
+//Task 05
+public class Character {
+  public String name;
+  public int level;
+  
+  public Character(String name, int level) {
+    this.name = name;
+    this.level = level;
+  }
+  
+  public void specialMove() {
+    System.out.println("Character uses a generic move.");
+  }
+  @Override
+  public boolean equals(Object obj){
+    Character a = (Character)obj; 
+    return (this.name.equals(a.name) && this.level == a.level);
+  }
+}
+
+
+public class Warrior extends Character{
+  
+  public Warrior(String a,int b){
+    super(a,b);
+  }
+  @Override
+   public void specialMove() {
+    System.out.println(name+" performs a heavy sword slash!");
+  }
+}
+public class Mage extends Character{
+  
+  public Mage(String a,int b){
+    super(a,b);
+  }
+  @Override
+   public void specialMove() {
+    System.out.println(name+" casts a powerful fireball!");
+  }
+}
+public class Paladin extends Warrior{
+  
+  public Paladin(String a,int b){
+    super(a,b);
+  }
+  @Override
+   public void specialMove() {
+    System.out.println(name+" unleashes a holy strike!");
+  }
+}
+
+
+//task6
+
+public class Bike extends Vehicle {
+  public String model;
+  public boolean sideCar;
+
+  public Bike(String brand, String model, int year, int wheels, boolean sideCar){
+    super(brand, year);
+    setWheels(wheels);
+    this.sideCar = sideCar;
+    this.model = model;
+  }
+
+  public void doAWheelie(){
+    if(sideCar){
+      System.out.printf("Wheelie Failed. %s:%s has SideCar\n", getBrand(), model);
+    }else{
+      System.out.printf("%s:%s is doing Wheelie!!\n", getBrand(), model);
+    }
+  }
+
+  @Override
+  public String toString(){
+    String extras = ", Model: " + model + ", SideCar: " + sideCar;
+    return "Bike " + super.toString() + extras;
+  }
+}
+
+
+public class Car extends Vehicle {
+  public String model;
+  public int doors;
+  public boolean ai;
+
+  public Car(String brand, String model, int year, int doors, int wheels, boolean ai){
+    super(brand, year);
+    setWheels(wheels);
+    this.model = model;
+    this.doors = doors;
+    this.ai = ai;
+  }
+  
+  public void startAutoPilot(){
+    if(ai){
+      System.out.printf("%s:%s AutoPilot Started\n", getBrand(), model);
+    }else{
+      System.out.printf("%s:%s has NO AutoPilot\n", getBrand(), model);
+    }
+  }
+
+  @Override
+  public String toString(){
+    String extras = ", Model: " + model + ", Doors: " + doors + ", AI: " + ai;
+    return "Car " + super.toString() + extras;
+  }
+}
+
+public class Garage {
+  Bike[] bikes;
+  Car[] cars;
+
+  int carCount, bikeCount;
+
+  public Garage(int carCap, int bikeCap) {
+    cars = new Car[carCap];
+    bikes = new Bike[bikeCap];
+    printDetail();
+  }
+
+  public void printDetail() {
+    System.out.println("Welcome to the Garage!");
+    System.out.println("Car Capacity: " + cars.length);
+    System.out.println("Bike Capacity: " + bikes.length);
+  }
+
+  public void addVehicle(Vehicle vehicle) {
+    if (vehicle instanceof Car) {
+      Car car = (Car) vehicle;
+      if (carCount < cars.length) {
+        System.out.println("A " + car.getBrand() + " CAR has been added to the Garage");
+        cars[carCount++] = car;
+      }else{
+        System.out.println("Can't add more Cars! Capacity: " + cars.length);
+      }
+    } else if (vehicle instanceof Bike) {
+      Bike bike = (Bike) vehicle;
+      if(bikeCount < bikes.length){
+        System.out.println("A " + bike.getBrand() + " BIKE has been added to the garage");
+        bikes[bikeCount++] = bike;
+      }else{
+        System.out.println("Can't add more bikes! Capacity: " + bikes.length);
+      }
+    }
+  }
+}
+
+
+//task7
+
+01. Frodo 1 / Bilbo 1
+02. Bilbo 1
+03. compiler error
+04. compiler error
+05. Gandalf 2 / Frodo 1 / Bilbo 1
+06. Gandalf 2 / Gandalf 1
+07. compiler error
+08. Gandalf 2 / Frodo 1 / Bilbo 1
+09. compiler error
+10. runtime error
+11. runtime error
+12. runtime error
+13. runtime error
+14. Gandalf 2 / Frodo 1 / Bilbo 1
+15. runtime error
+16. Gandalf 2 / Gandalf 1
+17. Bilbo 1
+18. runtime error
+19. Frodo 3
+20. compiler error
+
+//task 8
+
+1. crew 1
+2. blue 1 / moo 3
+3. compiler error
+4. sue 1
+5. crew 1
+6. blue 1/blue 3
+7. crew 3
+8. moo 3
+9. compiler error
+10. crew 1
+11. blue 3/moo 2/crew 3
+12. compiler error
+13. runtime error
+14. runtime error
+15. sue 3
+16. blue 3/ moo 2/moo 3
+17. runtime error
+18. blue 3/moo 2/moo 3
+19. runtime error
+20. blue 1/ moo 3
+
+//task 9
+
+1. Foo 1
+2. Buzz 1
+3. Bar 2
+4. Bar 3
+5. foo
+6. foo
+7. Buzz
+8. Runtime error
+9. Runtime error
+10. Bux 1
+11. Runtime error
+12. Bux 1
+13. Bux 1 / Foo 2
+14. Bar 2
+15. Runtime error
+16. Runtime error
+17. Runtime error
+18. Runtime error
+19. foo
+20. Runtime error
+
+//task 10
+
+1. Chocolate m2 / Chocolate m1
+2. Yummy / DairyMilk m2 / Chocolate m1
+3. compiler error
+4. Caramel m1
+5. Yummy / DairyMilk m2 / Caramel is Softy
+6. Chocolaty
+7. Chocolate m2
+8. SilkOreo m3 / Yummy / DairyMilk m2 / Chocolate is Chocolaty
+9. compiler error
+10. compiler error
+11. Yummy  / DairyMilk m2 / Chocolate m1 / SilkOreo m1
+12. Yummy / DairyMilk m2
+13. runtime error
+14. runtime error
+15. Chocolate m2  / Chocolate is Chocolaty
+16. Chocolaty
